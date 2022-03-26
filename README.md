@@ -123,101 +123,51 @@ from datetime import datetime
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
 ```
-<img width="1025" alt="Ekran Resmi 2022-03-26 21 24 52" src="https://user-images.githubusercontent.com/91700155/160252427-6f0cfe05-f3c8-4dd1-85cd-654f173dfbd4.png">
+<img width="1013" alt="Ekran Resmi 2022-03-26 21 24 52" src="https://user-images.githubusercontent.com/91700155/160252471-b371676c-e6c2-48b6-ade2-a482f2e88bdd.png">
     
 ### Paste the following code, and click Run. 
 ```console
 input_path = "s3://<YourS3BucketName>/input/<YourCSVFile>.csv"
 output_path = "s3://<YourS3BucketName>/output/"
 ```
-    
+ <img width="816" alt="Ekran Resmi 2022-03-26 21 27 47" src="https://user-images.githubusercontent.com/91700155/160252518-aaf0d5cb-906b-449d-aee2-38ad89886e6e.png">
+  
 ### Paste the following code, and click Run. 
 ```console
 btc = spark.read.option("inferSchema", "true").option("header", "true").csv(input_path)
 ```
-    
+ <img width="817" alt="Ekran Resmi 2022-03-26 21 28 01" src="https://user-images.githubusercontent.com/91700155/160252525-467f0c97-b088-4cda-9ca6-eb6367c769b0.png">
+     
 ### Paste the following code, and click Run. 
 ```console
 btc.count()
 ```
+<img width="1019" alt="Ekran Resmi 2022-03-26 21 29 03" src="https://user-images.githubusercontent.com/91700155/160252590-f11cf16a-0bab-4705-976d-da728ea23099.png">
     
 ### Paste the following code, and click Run. 
 ```console
 btc.show()
 ```
+<img width="816" alt="Ekran Resmi 2022-03-26 21 29 34" src="https://user-images.githubusercontent.com/91700155/160252596-e56a42a0-dc58-4d87-9105-4d72e89e5d52.png">
     
 ### Paste the following code, and click Run. 
 ```console
 btc.printSchema()   
 ```
+<img width="811" alt="Ekran Resmi 2022-03-26 21 29 49" src="https://user-images.githubusercontent.com/91700155/160252599-0eae5c71-fd61-4008-8b67-b1869840d5c5.png">
 
 ### Paste the following code, and click Run. 
 ```console
 updatedBTC = nyTaxi.withColumn("current_date", lit(datetime.now()))
 updatedBTC.printSchema()    
 ```
+<img width="813" alt="Ekran Resmi 2022-03-26 21 30 22" src="https://user-images.githubusercontent.com/91700155/160252603-e1af7384-236b-40d6-9cdb-7fb14517f58e.png">
 
+#### We can can see on the Emr -> Steps -> stdout under Log Files to view the logs that were printed during the execution of the step.
 
 <p></br>
 
 
-## EMR STEPS
-<p> EMR Steps can be configured while creating the cluster or submitted after the cluster is created. We will be following the latter.
-<p> You can add steps to a cluster using the AWS Management Console, the AWS CLI, or the Amazon EMR API. The maximum number of PENDING and RUNNING steps allowed in a cluster is 256, which includes system steps such as install Apache Pig, install Hive, install HBase, and configure debugging. You can submit an unlimited number of steps over the lifetime of a long-running cluster, but only 256 steps can be RUNNING or PENDING at any given time. You can run steps in paralell to optimize resource allocation and save run-time of the cluster. You can optionally choose to have transient clusters which terminate once all the steps complete.
-<p> EMR steps are used once you have completed developement in EMR environment and ETL scripts are ready to run in automated manner.
- 
-<p> Lets follow the steps to run run an ETL job developed in the previous labs.
-
-### In the AWS console, navigate to the S3 bucket you created in the previous section.
-### Create a file named spark-etl.py on your computer.
-### Copy and past this code into the spark-etl.py file. (Notice that the last line is updated.)
-```console        
-import sys
-from datetime import datetime
-
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import *
-
-if __name__ == "__main__":
-
-    print(len(sys.argv))
-    if (len(sys.argv) != 3):
-        print("Usage: spark-etl [input-folder] [output-folder]")
-        sys.exit(0)
-
-    spark = SparkSession\
-        .builder\
-        .appName("SparkETL")\
-        .getOrCreate()
-
-    nyTaxi = spark.read.option("inferSchema", "true").option("header", "true").csv(sys.argv[1])
-
-    updatedNYTaxi = nyTaxi.withColumn("current_date", lit(datetime.now()))
-
-    updatedNYTaxi.printSchema()
-
-    print(updatedNYTaxi.show())
-
-    print("Total number of records: " + str(updatedNYTaxi.count()))
-
-    updatedNYTaxi.write.format("parquet").mode("overwrite").save(sys.argv[2])    
-```           
-    
-### Upload this file to the files folder in your S3 bucket.
-### Navigate to the EMR service in the AWS console and select your cluster.  
-### Select the Steps tab.   
-### Click Add Step. 
-### For the Step Type choose Custom Jar
-### Name the Step.
-### For JAR Location input command-runner.jar
-### For the Arguements section input the following code replacing with your bucket name.   
-### Click Add.   
-### You can monitor the progress of your step from the Steps tab of your cluster.   
-### You can click on the stdout under Log Files to view the logs that were printed during the execution of the step.
-### Once the job completes successfully, you navigate to the output folder to check if an output/ with data is created.
-
-Congratulations! You have completed EMR Steps lab!   
-    
     
     
     
