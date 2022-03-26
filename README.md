@@ -14,7 +14,7 @@
 
 ## CLI JOB EXECUTION 
     
-<p> - Open the AWS console and navigate to the S3 service.
+### - Open the AWS console and navigate to the S3 service.
     
 ### - Create an S3 bucket with folders
     - Datasets
@@ -108,13 +108,14 @@ spark-submit spark-etl-examples.py s3://<YOUR-BUCKET>/input/ s3://<YOUR-BUCKET>/
 ### Click the radio button next to the cluster you created in Lab cluster creation lab and click ‘Choose cluster’. 
 <img width="688" alt="Ekran Resmi 2022-03-26 19 07 45" src="https://user-images.githubusercontent.com/91700155/160251352-b2db1fac-a558-4fa9-ac2a-c87a4dae786e.png">
 
-### Click ‘Create notebook’.
+### Click ‘Create notebook’. When you close the EMR and then reopen it, you have to change cluster which is active cluster before you work on it.
     
 ### Refresh the screen until ‘Starting’ changes to ‘Pending’ and then ‘Ready’. Click ‘Open in Jupyter’ to open your EMR Notebook.
 <img width="728" alt="Ekran Resmi 2022-03-26 20 50 06" src="https://user-images.githubusercontent.com/91700155/160251450-e72ffbcb-3bcd-4593-b0c3-778b8cfb8531.png">
    
 ### Create a new PySpark Notebook.
-    
+ <img width="423" alt="Ekran Resmi 2022-03-26 21 10 05" src="https://user-images.githubusercontent.com/91700155/160252021-720c9d8f-956e-4523-b9e0-f3821519de96.png">
+   
 ### Paste the following code, and click Run. 
 ```console
 import sys
@@ -122,37 +123,38 @@ from datetime import datetime
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
 ```
+<img width="1025" alt="Ekran Resmi 2022-03-26 21 24 52" src="https://user-images.githubusercontent.com/91700155/160252427-6f0cfe05-f3c8-4dd1-85cd-654f173dfbd4.png">
     
 ### Paste the following code, and click Run. 
 ```console
-input_path = "s3://<YourS3BucketName>/input/tripdata.csv"
+input_path = "s3://<YourS3BucketName>/input/<YourCSVFile>.csv"
 output_path = "s3://<YourS3BucketName>/output/"
 ```
     
 ### Paste the following code, and click Run. 
 ```console
-nyTaxi = spark.read.option("inferSchema", "true").option("header", "true").csv(input_path)
+btc = spark.read.option("inferSchema", "true").option("header", "true").csv(input_path)
 ```
     
 ### Paste the following code, and click Run. 
 ```console
-nyTaxi.count()
+btc.count()
 ```
     
 ### Paste the following code, and click Run. 
 ```console
-nyTaxi.show()
+btc.show()
 ```
     
 ### Paste the following code, and click Run. 
 ```console
-nyTaxi.printSchema()   
+btc.printSchema()   
 ```
 
 ### Paste the following code, and click Run. 
 ```console
-updatedNYTaxi = nyTaxi.withColumn("current_date", lit(datetime.now()))
-updatedNYTaxi.printSchema()    
+updatedBTC = nyTaxi.withColumn("current_date", lit(datetime.now()))
+updatedBTC.printSchema()    
 ```
 
 
@@ -227,5 +229,4 @@ Congratulations! You have completed EMR Steps lab!
  <p>
     
  Seda Atalay.
-<img width="794" alt="Ekran Resmi 2022-03-18 20 40 36" src="https://user-images.githubusercontent.com/91700155/159058152-cc6de842-6a4a-4c89-9a1c-4c15b389ca80.png">  
-<center><a href="https://aws.amazon.com/certification/?nc1=h_ls">AWS Certifications</a></center>
+
