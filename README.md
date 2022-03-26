@@ -14,7 +14,7 @@
 
 ## CLI JOB EXECUTION 
     
-### - Open the AWS console and navigate to the S3 service.
+<p> - Open the AWS console and navigate to the S3 service.
     
 ### - Create an S3 bucket with folders
     - Datasets
