@@ -157,7 +157,7 @@ btc.printSchema()
 
 ### Paste the following code, and click Run. 
 ```console
-updatedBTC = nyTaxi.withColumn("current_date", lit(datetime.now()))
+updatedBTC = btc.withColumn("current_date", lit(datetime.now()))
 updatedBTC.printSchema()    
 ```
 <img width="813" alt="Ekran Resmi 2022-03-26 21 30 22" src="https://user-images.githubusercontent.com/91700155/160252603-e1af7384-236b-40d6-9cdb-7fb14517f58e.png">
