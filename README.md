@@ -115,6 +115,7 @@ spark-submit spark-etl-examples.py s3://<YOUR-BUCKET>/input/ s3://<YOUR-BUCKET>/
 ### Create a new PySpark Notebook.
  <img width="423" alt="Ekran Resmi 2022-03-26 21 10 05" src="https://user-images.githubusercontent.com/91700155/160252021-720c9d8f-956e-4523-b9e0-f3821519de96.png">
    
+
 ### Paste the following code, and click Run. 
 ```console
 import sys
