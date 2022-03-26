@@ -4,8 +4,8 @@
 <p> In this article we will see how to send Spark-based ETL studies to an Amazon EMR cluster.
 <p> Alternatives:
     
- - You can submit the work as an EMR step using the console, CLI, or API.
- - You can submit steps when the cluster is started or you can submit steps to a running cluster. 
+- You can submit the work as an EMR step using the console, CLI, or API.
+- You can submit steps when the cluster is started or you can submit steps to a running cluster. 
 
     
 <p></br>
@@ -164,18 +164,19 @@ updatedBTC.printSchema()
 
 #### We can can see on the Emr -> Steps -> stdout under Log Files to view the logs that were printed during the execution of the step.
 
-<p></br>
+
 
 
     
+    
+ 
     
     
  <p>   
  Thank you :)
         
  
- <p> 
- <p>
+<p></br>
     
  Seda Atalay.
 
