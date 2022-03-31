@@ -1,4 +1,4 @@
-# SPARK-BASED ETL on EMR
+# Apache Spark Examples with Amazon EMR and S3 Services using Jupyter Notebook
 
 
 <p> In this article we will see how to send Spark-based ETL studies to an Amazon EMR cluster.
